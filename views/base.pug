@@ -1,0 +1,20 @@
+doctype html
+html
+  head 
+    block head
+      include _head
+      title Natours | #{title}
+
+    
+
+  body
+    // HEADER
+    include _header
+
+    // Main
+    main.main
+      block content
+        h1 This is a placeholder heading
+
+    // FOOTER
+    include _footer
