@@ -28,14 +28,15 @@ exports.getAll = (model, options) =>
     if (populateObj) features.query = features.query.populate(populateObj);
     // SEND RESPONSE
     const documents = await features.query;
+    console.log(await model.find());
 
-    // if (!documents.length)
-    //   return next(
-    //     new AppError(
-    //       `No ${singleDocName} was found based on search criteria!`,
-    //       404
-    //     )
-    //   );
+    if (!documents.length)
+      return next(
+        new AppError(
+          `No ${singleDocName} was found based on search criteria!`,
+          404
+        )
+      );
 
     res.status(200).json({
       status: 'success',

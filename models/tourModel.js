@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const slugify = require('slugify');
 const validator = require('validator');
 
@@ -154,21 +154,21 @@ tourSchema.pre('save', async function (next) {
   // generate tour slug
   this.slug = slugify(this.name, { lower: true });
   // generate product ID and price ID on stripe
-  await stripe.products.create({
-    name: this.name,
-    id: this.id,
-    active: true,
-    description: this.summary,
-    tax_code: 'txcd_20030000',
-    url: `${req.protocol}://${req.get('host')}/tour/${this.slug}`,
-  });
+  // await stripe.products.create({
+  //   name: this.name,
+  //   id: this.id,
+  //   active: true,
+  //   description: this.summary,
+  //   tax_code: 'txcd_20030000',
+  //   // url: `${req.protocol}://${req.get('host')}/tour/${this.slug}`,
+  // });
 
-  await stripe.prices.create({
-    currency: 'CAD',
-    product: this.id,
-    active: true,
-    unit_amount: this.price * 100,
-  });
+  // await stripe.prices.create({
+  //   currency: 'CAD',
+  //   product: this.id,
+  //   active: true,
+  //   unit_amount: this.price * 100,
+  // });
   next();
 });
 

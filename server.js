@@ -11,14 +11,15 @@ process.on('uncaughtException', (err) => {
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
-const db = process.env.DATABASE.replace(
-  '<password>',
-  process.env.DATABASE_PASSWORD
-);
+const db = process.env.DATABASE;
 
-mongoose.connect(db, {}).then((connect) => {
-  console.log('connected to natours-app DB...');
-});
+mongoose
+  .connect(db, {
+    dbName: 'natours-app',
+  })
+  .then((connect) => {
+    console.log('connected to natours-app DB...');
+  });
 
 // Start Server
 const port = process.env.PORT || 8000;
