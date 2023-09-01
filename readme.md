@@ -34,7 +34,7 @@ To set up the Natours API locally, follow these steps:
 1. Clone this repository.
 2. Install Node.js and MongoDB if not already installed.
 3. Install the required dependencies by running: `npm install`
-4. Create a `.env` file in the root directory and set the necessary environment variables. use config.env.example as a template.
+4. Create a `config.env` file in the root directory and set the necessary environment variables. use `config.env.example` as a template.
 5. Start the server with: `npm start`
 
 ## API Documentation
@@ -46,7 +46,7 @@ The Natours API provides a set of endpoints for various functionalities:
 - **Users**: Endpoints for user authentication, registration, and profile management.
 - **Bookings**: Endpoints for booking tours and managing bookings.
 
-For detailed information on each endpoint and how to use them, please refer to the [API Documentation](#https://documenter.getpostman.com/view/26563178/2s9Y5csKeB).
+For detailed information on each endpoint and how to use them, please refer to the <a href="https://documenter.getpostman.com/view/26563178/2s9Y5csKeB" target="_blank">API Documentation</a>.
 
 ## Technologies Used
 
@@ -59,8 +59,9 @@ The Natours API is built using the following technologies:
 - JWT (JSON Web Tokens) for authentication
 - Stripe for payment processing
 - Nodemailer for sending emails
+- Pug for email templates
 - And more...
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
