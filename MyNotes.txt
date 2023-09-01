@@ -1,5 +1,0 @@
-Some Concerns:
-
-About Authentication:
-  Each User must be able to update their own properties, like their own comments, their own posted data and ...
-  Only the admin can do all of those becuase of having a higher previlage.

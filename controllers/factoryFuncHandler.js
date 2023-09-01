@@ -51,13 +51,21 @@ exports.getOne = (model, options) =>
   catchAsync(async (req, res, next) => {
     // options variable
     const singleDocName = options.docName || 'document';
-    const populateObj = options.populateObj;
+    const populateGuides = options.populateGuides || false;
     const populateReviews = options.populateReviews || false;
 
     let query = model.findById(req.params.id);
 
-    if (populateReviews) query = query.populate('reviews');
-    if (populateObj) query = query.populate(populateObj);
+    if (populateReviews)
+      query = query.populate({
+        path: 'reviews',
+        select: 'user review rating createdAt',
+      });
+    if (populateGuides)
+      query = query.populate({
+        path: 'guides',
+        select: 'photo name role',
+      });
     const documents = await query;
 
     if (!documents)
@@ -117,7 +125,8 @@ exports.updateOne = (model, options) =>
   catchAsync(async (req, res, next) => {
     // Options Variables
     const singleDocName = options.docName || 'document';
-
+    console.log(req.params.id);
+    console.log(req.body);
     const document = await model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,

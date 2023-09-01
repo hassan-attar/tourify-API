@@ -32,7 +32,7 @@ exports.updateTourPhotos = upload.fields([
 ]);
 
 exports.resizeTourImages = catchAsync(async (req, res, next) => {
-  if (!req.files.imageCover && !req.files.images) return next();
+  if (!req.files?.imageCover && !req.files?.images) return next();
 
   if (req.files.imageCover) {
     req.body.imageCover = `tour-${req.params.id}-cover.jpeg`;
@@ -63,10 +63,7 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
 
 exports.getTour = factoryFunc.getOne(Tour, {
   docName: 'tour',
-  populate: {
-    path: 'guides',
-    select: `-__v -passwordChangedAt`,
-  },
+  populateGuides: true,
   populateReviews: true,
 });
 exports.getAllTours = factoryFunc.getAll(Tour, { docName: 'tour' });

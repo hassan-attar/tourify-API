@@ -59,14 +59,14 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide your email and password!', 400));
 
   // Check if user exist
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ email }).select('+password +role');
   // console.log(user);
   // if user dosen't exist or password is incorrect
   if (!user || !(await user.isPasswordCorrectAndSame(password, user.password)))
     return next(new AppError('email or password is incorrect', 401));
 
   // sign web token and send it to the user
-  signAndSendToken(res, user, 200);
+  signAndSendToken(res, user, 200, true);
 });
 
 exports.logout = (req, res, next) => {

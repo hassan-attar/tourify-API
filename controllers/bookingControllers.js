@@ -41,7 +41,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteBooking = factoryFunc.deleteOne(Booking, { docName: 'booking' });
-exports.creaeteBooking = factoryFunc.createOne(Booking, { docName: 'booking' });
+exports.createBooking = factoryFunc.createOne(Booking, { docName: 'booking' });
 exports.updateBooking = factoryFunc.updateOne(Booking, { docName: 'booking' });
 exports.getBooking = factoryFunc.getOne(Booking, { docName: 'booking' });
 exports.getAllBookings = factoryFunc.getAll(Booking, { docName: 'booking' });

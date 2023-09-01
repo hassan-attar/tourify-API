@@ -7,6 +7,7 @@ const compression = require('compression');
 const xss = require('xss-clean');
 const mongoSanatize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -14,15 +15,19 @@ const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
-const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 ////////////////////////////////////////////////////////////////////////////////
 // Global Middleware, apply to all requests
 // Set security headers
+app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
@@ -75,7 +80,6 @@ app.use((req, res, next) => {
 });
 
 // Seperate Requests based on their path to the Routes
-app.use('/', viewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
