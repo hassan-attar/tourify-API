@@ -3,6 +3,7 @@
 <img src="./public/img/natours-api-transparent.png" width="200" />
 
 Welcome to the Natours API! This API allows you to manage tours, user authentication, bookings, reviews, and more. It's built using Node.js with the Express framework and MongoDB for the database.
+for more information please refer to the <a href="https://documenter.getpostman.com/view/26563178/2s9Y5csKeB" target="_blank">API Documentation</a>.
 
 ## Table of Contents
 
